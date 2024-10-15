@@ -16,6 +16,7 @@
     "@langchain/core": "^0.3.11",
     "@langchain/ollama": "^0.1.0",
     "@prisma/client": "^5.20.0",
+    "@radix-ui/react-select": "^2.1.2",
     "@radix-ui/react-slot": "^1.1.0",
     "@remix-run/node": "^2.13.1",
     "@remix-run/react": "^2.13.1",

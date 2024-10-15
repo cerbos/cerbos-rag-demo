@@ -20,5 +20,6 @@ model Expense {
   amount       Float
   status       String
   approvedById String?
+  embeddingRaw String?
   embedding    String?
 }

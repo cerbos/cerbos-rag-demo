@@ -16,7 +16,7 @@ export async function loader() {
 }
 export default function Index() {
   return (
-    <div className="w-10/12 mx-auto flex-row gap-10 mt-4">
+    <div className="w-10/12 mx-auto flex flex-col gap-10 mt-4">
       <Seed />
       <h1 className="font-bold my-2 text-4xl">Authorization in RAG</h1>
       <Resources />

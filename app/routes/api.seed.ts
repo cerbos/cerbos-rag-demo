@@ -21,20 +21,18 @@ export async function action() {
   await prisma.expense.createMany({
     data: await Promise.all(
       data.map(async (d) => {
+        const document = `ID: ${d.id}
+Vendor: ${d.vendor}
+Amount: ${d.amount}
+Owner: ${d.ownerId}
+Region: ${d.region}
+Status: ${d.status}
+Created At: ${d.createdAt.toISOString()}`;
         return {
           ...d,
+          embeddingRaw: document,
           embedding: await embeddings
-            .embedQuery(
-              `
-            ID: ${d.id}
-            Vendor: ${d.vendor}
-            Amount: ${d.amount}
-            Owner: ${d.ownerId}
-            Region: ${d.region}
-            Status: ${d.status}
-            Created At: ${d.createdAt.toISOString()}
-            `
-            )
+            .embedQuery(document)
             .then((embedding) => JSON.stringify(embedding)),
         };
       })

@@ -1,21 +1,22 @@
 import { ActionFunctionArgs, json } from "@remix-run/node";
 
 import { cerbos } from "~/lib/cerbos.server";
+import { principals } from "~/lib/users";
 
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
-  const role = formData.get("role")?.toString();
+  const user = formData.get("user")?.toString();
 
-  if (!role) {
+  if (!user) {
+    return json(null);
+  }
+
+  if (!principals[user]) {
     return json(null);
   }
 
   const req = {
-    principal: {
-      id: "user@example.com",
-      roles: [role],
-      attr: { department: "SALES", region: "EMEA" },
-    },
+    principal: principals[user],
     resource: { kind: "expense" },
     action: "view",
   };

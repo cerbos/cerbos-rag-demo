@@ -48,12 +48,13 @@ export function Resources() {
               <TableRow>
                 <TableHead className="w-[100px]">ID</TableHead>
                 <TableHead>Created At</TableHead>
+                <TableHead>Created By</TableHead>
                 <TableHead>Vendor</TableHead>
                 <TableHead>Amount</TableHead>
                 <TableHead>Region</TableHead>
                 <TableHead>Status</TableHead>
                 <TableHead>Approved By</TableHead>
-                <TableHead>Embedding</TableHead>
+                {/* <TableHead>Embedding</TableHead> */}
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -62,21 +63,22 @@ export function Resources() {
                   <TableRow key={r.id}>
                     <TableCell className="font-medium">{r.id}</TableCell>
                     <TableCell>{r.createdAt}</TableCell>
+                    <TableCell>{r.ownerId}</TableCell>
                     <TableCell>{r.vendor}</TableCell>
                     <TableCell className="tabular-nums">{r.amount}</TableCell>
                     <TableCell>{r.region}</TableCell>
                     <TableCell>{r.status}</TableCell>
                     <TableCell>{r.approvedById}</TableCell>
-                    <TableCell className="truncate w-10 text-ellipsis">
+                    {/* <TableCell className="truncate w-10 flex text-ellipsis">
                       {r.embedding}
-                    </TableCell>
+                    </TableCell> */}
                   </TableRow>
                 );
               })}
             </TableBody>
             <TableFooter>
               <TableRow>
-                <TableCell colSpan={6}>Total</TableCell>
+                <TableCell colSpan={7}>Total</TableCell>
                 <TableCell className="text-right">
                   {fetcher.data?.resources.length}
                 </TableCell>
