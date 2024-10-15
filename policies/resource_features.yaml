@@ -1,0 +1,35 @@
+# yaml-language-server: $schema=https://api.cerbos.dev/latest/cerbos/policy/v1/Policy.schema.json
+---
+apiVersion: api.cerbos.dev/v1
+resourcePolicy:
+  version: "default"
+  importDerivedRoles:
+    - common_roles
+  resource: "features"
+  rules:
+    - actions: ["*"]
+      effect: EFFECT_ALLOW
+      roles:
+        - ADMIN
+
+    - actions: ["expenses"]
+      effect: EFFECT_ALLOW
+      roles:
+        - USER
+        - MANAGER
+
+    - actions: ["reports"]
+      effect: EFFECT_ALLOW
+      derivedRoles:
+        - FINANCE
+
+    - actions: ["tax"]
+      effect: EFFECT_ALLOW
+      roles:
+        - ADMIN
+
+    - actions: ["tax"]
+      effect: EFFECT_ALLOW
+      derivedRoles:
+        - FINANCE_MANAGER
+        - FINANCE
