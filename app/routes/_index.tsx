@@ -1,8 +1,10 @@
 import { json, type MetaFunction } from "@remix-run/node";
-import { Embedder } from "~/components/embedder";
-import { QueryPlan } from "~/components/queryplan";
-import { Resources } from "~/components/resources";
-import { Seed } from "~/components/seed";
+import { useState } from "react";
+
+import { RAGDiagram } from "~/assets/diagram-rag";
+import { RAGDiagramWithCerbos } from "~/assets/diagram-rag-with-cerbos";
+import { Label } from "~/components/ui/label";
+import { Switch } from "~/components/ui/switch";
 
 export const meta: MetaFunction = () => {
   return [
@@ -15,13 +17,16 @@ export async function loader() {
   return json({});
 }
 export default function Index() {
+  const [showAuthz, setShowAuthz] = useState(false);
   return (
     <div className="w-10/12 mx-auto flex flex-col gap-10 mt-4">
-      <Seed />
       <h1 className="font-bold my-2 text-4xl">Authorization in RAG</h1>
-      <Resources />
-      <Embedder />
-      <QueryPlan />
+      <div className="flex items-center space-x-2">
+        <Switch id="with-cerbos" onCheckedChange={setShowAuthz} />
+        <Label htmlFor="with-cerbos">With Authorization</Label>
+      </div>
+
+      {showAuthz ? <RAGDiagramWithCerbos /> : <RAGDiagram />}
     </div>
   );
 }

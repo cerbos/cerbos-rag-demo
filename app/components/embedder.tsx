@@ -10,9 +10,33 @@ import {
 } from "./ui/card";
 import { action } from "../routes/api.embed";
 import { LoaderIcon } from "lucide-react";
+import { useEffect, useState } from "react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
 
-export function Embedder() {
+interface IItem {
+  id: string;
+  title: string;
+  embeddingRaw: string;
+}
+interface Props {
+  items: IItem[];
+}
+
+export function Embedder({ items }: Props) {
   const fetcher = useFetcher<typeof action>();
+  const [selectedItem, setItemSelected] = useState<IItem | null>(null);
+
+  const [embeddingDoc, setEmbeddingDoc] = useState<string>("");
+
+  useEffect(() => {
+    setEmbeddingDoc(selectedItem?.embeddingRaw || "");
+  }, [selectedItem]);
 
   return (
     <Card className="">
@@ -20,6 +44,25 @@ export function Embedder() {
         <CardTitle>Embedding</CardTitle>
         <CardDescription>
           What does an embedded document look like?
+          <Select
+            onValueChange={(itemId) => {
+              setItemSelected(items.find((i) => i.id === itemId) || null);
+            }}
+            value={selectedItem?.id}
+          >
+            <SelectTrigger>
+              <SelectValue placeholder="Select a resource" />
+            </SelectTrigger>
+            <SelectContent>
+              {items.map((item, i) => {
+                return (
+                  <SelectItem key={i} value={item.id}>
+                    {item.title}
+                  </SelectItem>
+                );
+              })}
+            </SelectContent>
+          </Select>
         </CardDescription>
       </CardHeader>
       <CardContent className="gap-2 flex flex-col">
@@ -28,13 +71,18 @@ export function Embedder() {
           action="/api/embed"
           className="gap-2 flex flex-col"
         >
-          <Textarea name="input" />
+          <Textarea
+            name="input"
+            value={embeddingDoc}
+            onChange={(e) => setEmbeddingDoc(e.currentTarget.value)}
+            className="h-80"
+          />
           <Button type="submit">Embed</Button>
         </fetcher.Form>
         {fetcher.state == "loading" ? (
           <LoaderIcon />
         ) : (
-          <div className="font-mono whitespace-break-spaces text-wrap break-words text-xs max-h-64 overflow-ellipsis truncate">
+          <div className="font-mono whitespace-break-spaces text-wrap text-xs  overflow-ellipsis truncate break-all">
             {JSON.stringify(fetcher.data?.embeddings)}
           </div>
         )}
