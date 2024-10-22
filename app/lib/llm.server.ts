@@ -139,6 +139,8 @@ export async function doQuery(
 
   return {
     result,
+    principal,
+    authorize,
     ragFilter: where || null,
     queryPlan: authorization || null,
     prompt: finalPrompt,

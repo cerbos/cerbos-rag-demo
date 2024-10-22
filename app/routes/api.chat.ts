@@ -1,4 +1,4 @@
-import { PlanResourcesResponse } from "@cerbos/core";
+import { PlanResourcesResponse, Principal } from "@cerbos/core";
 import { ActionFunctionArgs, json } from "@remix-run/node";
 
 import { doQuery } from "~/lib/llm.server";
@@ -14,6 +14,8 @@ export interface ChatResponse {
     ragFilter: object;
     queryPlan: PlanResourcesResponse;
     prompt: string;
+    principal: Principal;
+    authorize: boolean;
   };
 }
 
