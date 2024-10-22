@@ -5,18 +5,18 @@ import { principals } from "~/lib/users";
 
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
-  const user = formData.get("user")?.toString();
+  const principal = formData.get("principal")?.toString();
 
-  if (!user) {
+  if (!principal) {
     return json(null);
   }
 
-  if (!principals[user]) {
+  if (!principals[principal]) {
     return json(null);
   }
 
   const req = {
-    principal: principals[user],
+    principal: principals[principal],
     resource: { kind: "expense" },
     action: "view",
   };

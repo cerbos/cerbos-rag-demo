@@ -24,7 +24,7 @@ export default function EmbeddingPage() {
           return {
             id: r.id,
             title: `${r.id} - ${r.vendor} - $${r.amount}`,
-            embeddingRaw: r.embeddingRaw,
+            embeddingRaw: r.embeddingRaw || "",
           };
         })}
       />

@@ -5,6 +5,7 @@ import {
   type MetaFunction,
 } from "@remix-run/node";
 import { Form, useLoaderData } from "@remix-run/react";
+import { PrincipalSelect } from "~/components/principal-select";
 import { Button } from "~/components/ui/button";
 import {
   Card,
@@ -27,6 +28,7 @@ import {
 } from "~/components/ui/table";
 import { embeddings } from "~/embedding.server";
 import { prisma } from "~/lib/db.server";
+import { resetVectorStore } from "~/lib/reset-vector-store.server";
 
 export const meta: MetaFunction = () => {
   return [
@@ -47,7 +49,7 @@ export async function action({ request }: ActionFunctionArgs) {
     data: {
       vendor: body.get("vendor")!.toString(),
       amount: parseInt(body.get("amount")!.toString()),
-      ownerId: "sally",
+      ownerId: body.get("principal")!.toString(),
       region: body.get("region")!.toString(),
       status: "PENDING",
     },
@@ -72,7 +74,7 @@ export async function action({ request }: ActionFunctionArgs) {
       id: d.id,
     },
   });
-
+  await resetVectorStore();
   return redirect(`.`);
 }
 export default function ResourcesPage() {
@@ -97,7 +99,6 @@ export default function ResourcesPage() {
                 <TableHead>Region</TableHead>
                 <TableHead>Status</TableHead>
                 <TableHead>Approved By</TableHead>
-                {/* <TableHead>Embedding</TableHead> */}
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -112,19 +113,10 @@ export default function ResourcesPage() {
                     <TableCell>{r.region}</TableCell>
                     <TableCell>{r.status}</TableCell>
                     <TableCell>{r.approvedById}</TableCell>
-                    {/* <TableCell className="truncate w-10 flex text-ellipsis">
-                      {r.embedding}
-                    </TableCell> */}
                   </TableRow>
                 );
               })}
             </TableBody>
-            {/* <TableFooter>
-              <TableRow>
-                <TableCell colSpan={7}>Total</TableCell>
-                <TableCell className="text-right">{resources.length}</TableCell>
-              </TableRow>
-            </TableFooter> */}
           </Table>
         </CardContent>
       </Card>
@@ -142,7 +134,7 @@ export default function ResourcesPage() {
             <Label>Region</Label>
             <Input name="region"></Input>
             <Label>Created By</Label>
-            <Input name="createdBy"></Input>
+            <PrincipalSelect />
 
             <Button type="submit">Add</Button>
           </Form>
