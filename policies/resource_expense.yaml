@@ -24,8 +24,16 @@ resourcePolicy:
       effect: EFFECT_ALLOW
       derivedRoles:
         - OWNER
-        - FINANCE
         - REGION_MANAGER
+        - FINANCE_MANAGER
+
+    - actions: ["view"]
+      effect: EFFECT_ALLOW
+      derivedRoles:
+        - FINANCE
+      condition:
+        match:
+          expr: request.resource.attr.amount < 10000
 
     # A `principal` that belongs to any of these groups "OWNER" or "FINANCE" is
     # allowed to view the approver field via "view:approver" action.
