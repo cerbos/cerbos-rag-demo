@@ -14,7 +14,7 @@ export function ChatEntry({ response }: { response: ChatResponse }) {
         <p className="italic">{response.result?.result.question}</p>
       </div>
       <div className=" bg-green-50 rounded-xl rounded-t-none p-2">
-        <p className="italic text-right text-sm">
+        <p className="italic text-right text-xs">
           <pre className="break-words whitespace-pre-wrap">
             {response.result?.result.answer}
           </pre>

@@ -5,6 +5,7 @@ import {
   Filter,
   CodeIcon,
   ArrowUpLeftIcon,
+  ShieldQuestionIcon,
 } from "lucide-react";
 import {
   SidebarContent,
@@ -40,6 +41,11 @@ const items = [
     title: "Vector Store",
     url: "/vector-store",
     icon: ArrowUpLeftIcon,
+  },
+  {
+    title: "Policies",
+    url: "https://hub.cerbos.cloud/app/playground/O3JT41PKYYAO",
+    icon: ShieldQuestionIcon,
   },
   {
     title: "Query Plan",
