@@ -58,8 +58,10 @@ export function VectorStore() {
                 return (
                   <TableRow key={r.id}>
                     <TableCell className="font-medium">{r.id}</TableCell>
-                    <TableCell className="truncate font-mono text-xs text-wrap break-all">
-                      {r.embedding}
+                    <TableCell className="">
+                      <div className="truncate font-mono text-xs text-wrap break-all h-40">
+                        {r.embedding}
+                      </div>
                     </TableCell>
                     <TableCell className="truncate font-mono text-xs">
                       <pre>

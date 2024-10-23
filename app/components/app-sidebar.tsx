@@ -46,6 +46,7 @@ const items = [
     title: "Policies",
     url: "https://hub.cerbos.cloud/app/playground/O3JT41PKYYAO",
     icon: ShieldQuestionIcon,
+    target: "_blank",
   },
   {
     title: "Query Plan",
@@ -74,7 +75,7 @@ export function AppSidebar() {
                     asChild
                     isActive={location.pathname === item.url}
                   >
-                    <Link to={item.url}>
+                    <Link to={item.url} target={item.target}>
                       <item.icon />
                       <span>{item.title}</span>
                     </Link>
