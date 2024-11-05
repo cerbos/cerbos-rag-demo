@@ -2,9 +2,6 @@ import { PromptTemplate } from "@langchain/core/prompts";
 import { OllamaEmbeddings } from "@langchain/ollama";
 
 const OLLAMA_ENDPOINT = process.env.OLLAMA_ENDPOINT || "http://localhost:11434";
-// const CHROMA_ENDPOINT = process.env.CHROMA_ENDPOINT || "http://localhost:5666";
-// export const CHROMA_COLLECTION_NAME =
-//   process.env.CHROMA_COLLECTION_NAME || "expense_dev";
 
 export const embeddings = new OllamaEmbeddings({
   model: "mxbai-embed-large", // Default value

@@ -13,7 +13,7 @@ interface Props {
 
 export function PrincipalSelect({ name = "principal" }: Props) {
   return (
-    <Select name={name}>
+    <Select name={name} required>
       <SelectTrigger>
         <SelectValue placeholder="Select a user" />
       </SelectTrigger>

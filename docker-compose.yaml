@@ -1,4 +1,4 @@
-name: demo-app-expenses-dev
+name: cerbos-rag-demo
 
 services:
   chroma:
@@ -25,13 +25,5 @@ services:
       - 3592:3592
       - 3593:3593
     volumes:
-      - /tmp:/audit_logs
-    environment:
-      - CERBOS_HUB_BUNDLE=latest
-      - CERBOS_HUB_WORKSPACE_SECRET=CERBOS-1D0XRSICJTA83-GK3LEWN68MER5HH0TJZ5MX7DQZ0A3HCXLH3CKVGR27XZN208P2GS0JMNKM
-      - CERBOS_HUB_CLIENT_ID=K18UU0DSF7KT
-      - CERBOS_HUB_CLIENT_SECRET=cerbos_5zaTcxppPuVLMaS102XbYGFfPU0OmsdtJLDixYGwmkA
-    command: "server --set=audit.enabled=true --set=audit.backend=hub --set=audit.hub.storagePath=/audit_logs"
-
-volumes:
-  audit-logs:
+      - ./policies:/policies
+    command: "server"

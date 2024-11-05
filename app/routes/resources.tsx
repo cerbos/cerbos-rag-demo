@@ -17,6 +17,13 @@ import {
 
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "~/components/ui/select";
 
 import {
   Table,
@@ -125,16 +132,33 @@ export default function ResourcesPage() {
           <CardTitle>Add Expense</CardTitle>
         </CardHeader>
         <CardContent>
-          <Form method="POST">
-            <Label>Vendor</Label>
-            <Input name="vendor"></Input>
-
-            <Label>Amount</Label>
-            <Input name="amount" type="number"></Input>
-            <Label>Region</Label>
-            <Input name="region"></Input>
-            <Label>Created By</Label>
-            <PrincipalSelect />
+          <Form method="POST" className="flex gap-4 flex-col">
+            <div className="flex w-full gap-4">
+              <div>
+                <Label>Vendor</Label>
+                <Input name="vendor" required></Input>
+              </div>
+              <div>
+                <Label>Amount</Label>
+                <Input name="amount" type="number" required></Input>
+              </div>
+            </div>
+            <div>
+              <Label>Region</Label>
+              <Select name="region" required>
+                <SelectTrigger>
+                  <SelectValue placeholder="Region" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="NA">North America</SelectItem>
+                  <SelectItem value="EMEA">EMEA</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <Label>Created By</Label>
+              <PrincipalSelect />
+            </div>
 
             <Button type="submit">Add</Button>
           </Form>
