@@ -15,7 +15,7 @@ export async function loader() {
   return json({});
 }
 export default function Chat() {
-  const [, setShowAuthz] = useState(false);
+  const [showAuthz, setShowAuthz] = useState(false);
   const fetcher = useFetcher<typeof chatAction>();
 
   const [responses, setResposnes] = useState<ChatResponse[]>([]);
@@ -56,15 +56,16 @@ export default function Chat() {
             </Button>
           </div>
           <div className="flex gap-4">
-            <PrincipalSelect name="principal" />
-
+            <div className="w-96">
+              <PrincipalSelect name="principal" defaultValue={"sally"} />
+            </div>
             <div className="flex items-center gap-4">
               <Switch
                 id="with-cerbos"
                 name="authorize"
                 onCheckedChange={setShowAuthz}
               />
-              <Label htmlFor="with-cerbos">With Authorization</Label>
+              <Label htmlFor="with-cerbos">Apply Authorization Policy</Label>
             </div>
           </div>
         </fetcher.Form>

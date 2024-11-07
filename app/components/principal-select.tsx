@@ -9,11 +9,12 @@ import {
 
 interface Props {
   name?: string;
+  defaultValue?: string;
 }
 
-export function PrincipalSelect({ name = "principal" }: Props) {
+export function PrincipalSelect({ name = "principal", defaultValue }: Props) {
   return (
-    <Select name={name} required>
+    <Select name={name} required defaultValue={defaultValue}>
       <SelectTrigger>
         <SelectValue placeholder="Select a user" />
       </SelectTrigger>
@@ -22,7 +23,7 @@ export function PrincipalSelect({ name = "principal" }: Props) {
           const p = principals[key];
           return (
             <SelectItem key={key} value={key}>
-              {`${p.id} - ${JSON.stringify(p.roles)} - ${p.attr.region ?? ""} ${
+              {`${p.id} - ${p.roles.join(", ")} - ${p.attr.region ?? ""} ${
                 p.attr.department
               }`}
             </SelectItem>
