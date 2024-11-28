@@ -3,3 +3,4 @@ node_modules
 /.cache
 /build
 chroma
+docker-compose-hub.yaml
