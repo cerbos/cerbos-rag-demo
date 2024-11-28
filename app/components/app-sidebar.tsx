@@ -6,6 +6,7 @@ import {
   CodeIcon,
   ArrowUpLeftIcon,
   ShieldQuestionIcon,
+  LucideFileQuestion,
 } from "lucide-react";
 import {
   SidebarContent,
@@ -20,6 +21,7 @@ import {
 } from "~/components/ui/sidebar";
 import { Seed } from "./seed";
 import { Link, useLocation } from "@remix-run/react";
+import { CerbosLogo } from "./logo";
 
 const items = [
   {
@@ -54,6 +56,11 @@ const items = [
     icon: Filter,
   },
   {
+    title: "Prompt",
+    url: "/prompt",
+    icon: LucideFileQuestion,
+  },
+  {
     title: "Chat",
     url: "/chat",
     icon: Bot,
@@ -65,6 +72,9 @@ export function AppSidebar() {
   return (
     <Sidebar>
       <SidebarContent>
+        <div className="pl-4 pt-4">
+          <CerbosLogo />
+        </div>
         <SidebarGroup>
           <SidebarGroupLabel>RAG Authorization</SidebarGroupLabel>
           <SidebarGroupContent>

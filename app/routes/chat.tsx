@@ -15,7 +15,7 @@ export async function loader() {
   return json({});
 }
 export default function Chat() {
-  const [showAuthz, setShowAuthz] = useState(false);
+  const [, setShowAuthz] = useState(false);
   const fetcher = useFetcher<typeof chatAction>();
 
   const [responses, setResposnes] = useState<ChatResponse[]>([]);
