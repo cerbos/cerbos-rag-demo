@@ -3,4 +3,5 @@ node_modules
 /.cache
 /build
 chroma
+!chroma/chroma.sqlite3
 docker-compose-hub.yaml
