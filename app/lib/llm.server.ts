@@ -15,22 +15,24 @@ import { Principal } from "./users";
 
 const OLLAMA_ENDPOINT = process.env.OLLAMA_ENDPOINT || "http://localhost:11434";
 const CHROMA_ENDPOINT = process.env.CHROMA_ENDPOINT || "http://localhost:5666";
+const EMBEDDING_MODEL = process.env.EMBEDDING_MODEL || "mxbai-embed-large";
+const LLM = process.env.LLM || "llama3.1";
+
 export const CHROMA_COLLECTION_NAME =
   process.env.CHROMA_COLLECTION_NAME || "expense_dev";
 
 const llm = new Ollama({
   baseUrl: OLLAMA_ENDPOINT,
-  model: "llama3.1", // Default value
+  model: LLM, // Default value
   temperature: 0,
   maxRetries: 2,
 });
 
 const embeddings = new OllamaEmbeddings({
-  model: "mxbai-embed-large", // Default value
+  model: EMBEDDING_MODEL, // Default value
   baseUrl: OLLAMA_ENDPOINT, // Default value
 });
 
-console.log(CHROMA_ENDPOINT);
 export const vectorStore = new Chroma(embeddings, {
   collectionName: CHROMA_COLLECTION_NAME,
   url: CHROMA_ENDPOINT, // Optional, will default to this value
