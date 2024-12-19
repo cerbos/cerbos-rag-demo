@@ -3,6 +3,7 @@ name: cerbos-rag-demo
 services:
   chroma:
     image: chromadb/chroma
+    network_mode: host
     ports:
       - 5666:5666
     command: "--workers 1 --host 0.0.0.0 --port 5666 --proxy-headers --log-config chromadb/log_config.yml --timeout-keep-alive 30"
@@ -20,6 +21,7 @@ services:
       - ./chroma/:/chroma/chroma
 
   cerbos:
+    network_mode: host
     image: ghcr.io/cerbos/cerbos:0.40.0
     ports:
       - 3592:3592
@@ -27,3 +29,7 @@ services:
     volumes:
       - ./policies:/policies
     command: "server"
+
+  app:
+    network_mode: host
+    build: "."

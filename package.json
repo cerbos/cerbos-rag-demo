@@ -7,7 +7,7 @@
     "build": "react-router build",
     "dev": "react-router dev",
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
-    "start": "react-router-serve ./build/server/index.js",
+    "start": "cross-env NODE_ENV=production react-router-serve ./build/server/index.js",
     "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
@@ -31,6 +31,7 @@
     "chromadb": "^1.9.4",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "cross-env": "^7.0.3",
     "isbot": "^4.1.0",
     "lucide-react": "^0.452.0",
     "react": "19.0.0",
