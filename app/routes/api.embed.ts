@@ -1,14 +1,14 @@
-import { ActionFunctionArgs, json } from "@remix-run/node";
+import type { Route } from "./+types/api.embed";
 import { embeddings } from "~/embedding.server";
 
-export async function action({ request }: ActionFunctionArgs) {
+export async function action({ request }: Route.ActionArgs) {
   const formData = await request.formData();
   const input = formData.get("input")?.toString();
   if (!input) {
-    return json(null);
+    return null;
   }
-  return json({
+  return {
     ok: true,
     embeddings: await embeddings.embedQuery(input),
-  });
+  };
 }

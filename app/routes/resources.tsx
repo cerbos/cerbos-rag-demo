@@ -1,10 +1,6 @@
-import {
-  ActionFunctionArgs,
-  json,
-  redirect,
-  type MetaFunction,
-} from "@remix-run/node";
-import { Form, useLoaderData } from "@remix-run/react";
+import type { Route } from "./+types/resources";
+
+import { redirect, Form } from "react-router";
 import { PrincipalSelect } from "~/components/principal-select";
 import { Button } from "~/components/ui/button";
 import {
@@ -37,7 +33,7 @@ import { embeddings } from "~/embedding.server";
 import { prisma } from "~/lib/db.server";
 import { resetVectorStore } from "~/lib/reset-vector-store.server";
 
-export const meta: MetaFunction = () => {
+export const meta: Route.MetaFunction = () => {
   return [
     { title: "Cerbos for AI Agent" },
     { name: "description", content: "Using Cerbos in a RAG architecture" },
@@ -46,10 +42,10 @@ export const meta: MetaFunction = () => {
 
 export async function loader() {
   const resources = await prisma.expense.findMany({});
-  return json({ resources });
+  return { resources };
 }
 
-export async function action({ request }: ActionFunctionArgs) {
+export async function action({ request }: Route.ActionArgs) {
   const body = await request.formData();
 
   const d = await prisma.expense.create({
@@ -84,8 +80,7 @@ export async function action({ request }: ActionFunctionArgs) {
   await resetVectorStore();
   return redirect(`.`);
 }
-export default function ResourcesPage() {
-  const { resources } = useLoaderData<typeof loader>();
+export default function ResourcesPage({ loaderData }: Route.ComponentProps) {
   return (
     <div className="w-10/12 mx-auto flex flex-col gap-10 mt-4">
       <h1 className="font-bold my-2 text-4xl">Application Resources</h1>
@@ -109,11 +104,11 @@ export default function ResourcesPage() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {resources.map((r) => {
+              {loaderData.resources.map((r) => {
                 return (
                   <TableRow key={r.id}>
                     <TableCell className="font-medium">{r.id}</TableCell>
-                    <TableCell>{r.createdAt}</TableCell>
+                    <TableCell>{r.createdAt.toISOString()}</TableCell>
                     <TableCell>{r.ownerId}</TableCell>
                     <TableCell>{r.vendor}</TableCell>
                     <TableCell className="tabular-nums">{r.amount}</TableCell>

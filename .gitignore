@@ -5,3 +5,4 @@ node_modules
 chroma
 !chroma/chroma.sqlite3
 docker-compose-hub.yaml
+.react-router/

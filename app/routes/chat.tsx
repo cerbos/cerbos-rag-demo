@@ -1,10 +1,10 @@
-import { json } from "@remix-run/node";
+import { useFetcher } from "react-router";
 import { useEffect, useState } from "react";
 
 import { Label } from "~/components/ui/label";
 import { Switch } from "~/components/ui/switch";
-import { action as chatAction, ChatResponse } from "../routes/api.chat";
-import { useFetcher } from "@remix-run/react";
+import type { action as chatAction, ChatResponse } from "./api.chat";
+
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { PrincipalSelect } from "~/components/principal-select";
@@ -12,7 +12,7 @@ import { Loader } from "lucide-react";
 import { ChatEntry } from "~/components/chat-response";
 
 export async function loader() {
-  return json({});
+  return {};
 }
 export default function Chat() {
   const [, setShowAuthz] = useState(false);

@@ -1,4 +1,3 @@
-import { json } from "@remix-run/node";
 import { embeddings } from "~/embedding.server";
 
 import { prisma } from "~/lib/db.server";
@@ -42,7 +41,7 @@ Created At: ${d.createdAt.toISOString()}`;
 
   await resetVectorStore();
 
-  return json({
+  return {
     ok: true,
-  });
+  };
 }

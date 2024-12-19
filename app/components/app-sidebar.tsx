@@ -20,7 +20,7 @@ import {
   SidebarFooter,
 } from "~/components/ui/sidebar";
 import { Seed } from "./seed";
-import { Link, useLocation } from "@remix-run/react";
+import { Link, useLocation } from "react-router";
 import { CerbosLogo } from "./logo";
 
 const items = [
