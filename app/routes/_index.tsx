@@ -1,4 +1,4 @@
-import { json, type MetaFunction } from "@remix-run/node";
+import { type MetaFunction } from "react-router";
 import { useState } from "react";
 
 import { RAGDiagram } from "~/assets/diagram-rag";
@@ -14,7 +14,7 @@ export const meta: MetaFunction = () => {
 };
 
 export async function loader() {
-  return json({});
+  return {};
 }
 export default function Index() {
   const [showAuthz, setShowAuthz] = useState(false);

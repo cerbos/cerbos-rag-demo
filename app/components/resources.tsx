@@ -1,4 +1,4 @@
-import { useFetcher } from "@remix-run/react";
+import { useFetcher } from "react-router";
 import { Button } from "./ui/button";
 import {
   Card,
@@ -62,7 +62,7 @@ export function Resources() {
                 return (
                   <TableRow key={r.id}>
                     <TableCell className="font-medium">{r.id}</TableCell>
-                    <TableCell>{r.createdAt}</TableCell>
+                    <TableCell>{r.createdAt.toISOString()}</TableCell>
                     <TableCell>{r.ownerId}</TableCell>
                     <TableCell>{r.vendor}</TableCell>
                     <TableCell className="tabular-nums">{r.amount}</TableCell>

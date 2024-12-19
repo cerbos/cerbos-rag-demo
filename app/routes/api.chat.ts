@@ -1,5 +1,5 @@
+import type { Route } from "./+types/api.chat";
 import { PlanResourcesResponse, Principal } from "@cerbos/core";
-import { ActionFunctionArgs, json } from "@remix-run/node";
 
 import { doQuery } from "~/lib/llm.server";
 import { principals } from "~/lib/users";
@@ -19,7 +19,7 @@ export interface ChatResponse {
   };
 }
 
-export async function action({ request }: ActionFunctionArgs) {
+export async function action({ request }: Route.ActionArgs) {
   const body = await request.formData();
   const question = body.get("question")?.toString();
   const principal = body.get("principal")?.toString();
@@ -28,15 +28,15 @@ export async function action({ request }: ActionFunctionArgs) {
   console.log(question, principal);
 
   if (!question || !principal) {
-    return json({
+    return {
       ok: false,
-    });
+    };
   }
 
   const result = await doQuery(question, principals[principal], authorize);
 
-  return json({
+  return {
     ok: true,
     result,
-  });
+  };
 }

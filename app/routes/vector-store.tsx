@@ -1,7 +1,7 @@
-import { json, type MetaFunction } from "@remix-run/node";
+import type { Route } from "./+types/vector-store";
 import { VectorStore } from "~/components/vector-store";
 
-export const meta: MetaFunction = () => {
+export const meta: Route.MetaFunction = () => {
   return [
     { title: "Cerbos for AI Agent" },
     { name: "description", content: "Using Cerbos in a RAG architecture" },
@@ -9,7 +9,7 @@ export const meta: MetaFunction = () => {
 };
 
 export async function loader() {
-  return json({});
+  return {};
 }
 export default function VectorStorePage() {
   return (
