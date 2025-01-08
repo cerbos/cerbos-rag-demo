@@ -6,3 +6,5 @@ chroma
 !chroma/chroma.sqlite3
 docker-compose-hub.yaml
 .react-router/
+.env
+docker-compose.mongo-atlas.yaml

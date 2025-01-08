@@ -1,4 +1,4 @@
-name: cerbos-rag-demo
+name: cerbos-rag-demo-chroma
 
 services:
   chroma:
@@ -13,9 +13,9 @@ services:
       - PERSIST_DIRECTORY=/chroma/chroma
     healthcheck:
       test:
-        ["CMD", "/bin/bash", "-c", "cat < /dev/null > /dev/tcp/localhost/8001"]
-      interval: 30s
-      timeout: 10s
+        ["CMD", "/bin/bash", "-c", "cat < /dev/null > /dev/tcp/localhost/5666"]
+      interval: 5s
+      timeout: 5s
       retries: 3
     volumes:
       - ./chroma/:/chroma/chroma
@@ -33,3 +33,15 @@ services:
   app:
     network_mode: host
     build: "."
+    environment:
+      - DATABASE_URL=file:./dev.db
+      - EMBEDDING_MODEL=mxbai-embed-large
+      - LLM=llama3.1
+      - VECTOR_STORE=chroma
+      - CHROMA_PORT=5666
+      - CHROMA_ENDPOINT=http://localhost:5666
+    depends_on:
+      chroma:
+        condition: service_healthy
+      cerbos:
+        condition: service_started
