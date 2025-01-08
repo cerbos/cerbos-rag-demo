@@ -4,7 +4,8 @@ node_modules
 /build
 chroma
 !chroma/chroma.sqlite3
-docker-compose-hub.yaml
 .react-router/
 .env
-docker-compose.mongo-atlas.yaml
+docker-compose*
+!docker-compose.chroma.yaml
+
