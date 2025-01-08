@@ -4,6 +4,7 @@ import { embeddings } from "./embedding.server";
 import { ChromaDB } from "./stores/chroma.server";
 import { MongoAtlas } from "./stores/mongo-atlas.server";
 import { Pinecone } from "./stores/pinecone.server";
+import { Qdrant } from "./stores/qdrant.server";
 
 export interface VectorStore {
   init(): Promise<void>;
@@ -38,6 +39,13 @@ function createVectorStore(): VectorStore {
         embeddings,
         index: process.env.PINECONE_INDEX || "",
         apiKey: process.env.PINECONE_API_KEY || "",
+      });
+    case "qdrant":
+      return new Qdrant({
+        embeddings,
+        url: process.env.QDEANT_URL || "",
+        apiKey: process.env.QDRANT_API_KEY || "",
+        collectionName: process.env.QDRANT_COLLECTION_NAME || "",
       });
     default:
       throw new Error(`Unknown vector store type: ${storeType}`);
