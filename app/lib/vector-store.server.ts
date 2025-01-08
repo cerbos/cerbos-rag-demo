@@ -3,6 +3,7 @@ import { Document } from "@langchain/core/documents";
 import { embeddings } from "./embedding.server";
 import { ChromaDB } from "./stores/chroma.server";
 import { MongoAtlas } from "./stores/mongo-atlas.server";
+import { Pinecone } from "./stores/pinecone.server";
 
 export interface VectorStore {
   init(): Promise<void>;
@@ -31,6 +32,12 @@ function createVectorStore(): VectorStore {
         dbName: process.env.MONGODB_ATLAS_DB_NAME || "",
         collectionName:
           process.env.MONGODB_ATLAS_COLLECTION_NAME || "expense_dev",
+      });
+    case "pinecone":
+      return new Pinecone({
+        embeddings,
+        index: process.env.PINECONE_INDEX || "",
+        apiKey: process.env.PINECONE_API_KEY || "",
       });
     default:
       throw new Error(`Unknown vector store type: ${storeType}`);

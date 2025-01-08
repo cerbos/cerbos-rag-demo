@@ -24,3 +24,4 @@ The application is broken into a number of sections which demonstrate the data s
 
 - Chroma
 - (WIP) Mongo Atlas
+- (WIP) Pinecone

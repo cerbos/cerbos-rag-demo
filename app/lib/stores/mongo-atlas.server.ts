@@ -82,7 +82,7 @@ export class MongoAtlas implements VectorStore {
   }
 
   async addDocuments(documents: Document[], { ids }: { ids: string[] }) {
-    this.store.addDocuments(documents, { ids });
+    await this.store.addDocuments(documents, { ids });
   }
 
   async reset(): Promise<void> {
