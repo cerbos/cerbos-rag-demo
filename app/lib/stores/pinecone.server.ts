@@ -35,6 +35,7 @@ export class Pinecone implements VectorStore {
     try {
       const indexModel = await this.client.describeIndex(this.indexName);
       console.log(indexModel);
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (e) {
       await this.client.createIndex({
         name: this.indexName,
@@ -69,6 +70,7 @@ export class Pinecone implements VectorStore {
     try {
       await this.index?.deleteAll();
       console.log("Store deletion complete");
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (e) {
       console.log("Store deletion failed");
     }
