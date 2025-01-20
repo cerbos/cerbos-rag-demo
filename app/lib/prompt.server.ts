@@ -1,13 +1,6 @@
-export async function loader() {
-  return {};
-}
-export default function Chat() {
-  return (
-    <div className="w-10/12 mx-auto flex flex-col gap-10 min-h-screen max-h-screen">
-      <h1 className="font-bold text-4xl py-4">Prompt</h1>
-      <code>
-        <pre>
-          {`
+import { PromptTemplate } from "@langchain/core/prompts";
+
+export const prompt = PromptTemplate.fromTemplate(`
 You are an assistant for question-answering tasks. 
 Use the following pieces of retrieved context to answer the question. 
 
@@ -25,9 +18,5 @@ My region is {region}
 
 The current time is {time}
 
-Answer: `}
-        </pre>
-      </code>
-    </div>
-  );
-}
+Answer:  
+  `);

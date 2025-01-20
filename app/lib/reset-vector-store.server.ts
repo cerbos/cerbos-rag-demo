@@ -1,14 +1,10 @@
 import { prisma } from "./db.server";
-import { vectorStore } from "./llm.server";
+import { vectorStore } from "./vector-store.server";
 
 export async function resetVectorStore() {
   try {
-    await vectorStore.ensureCollection();
+    await vectorStore.reset();
 
-    const ids = (await vectorStore.collection?.get({}))?.ids || [];
-    if (ids.length > 0) {
-      await vectorStore.delete({ ids });
-    }
     const expenses = await prisma.expense.findMany({});
     const documents = expenses.map((d) => {
       return {
@@ -31,8 +27,6 @@ Created At: ${d.createdAt.toISOString()}`,
         },
       };
     });
-
-    console.log(documents);
 
     await vectorStore.addDocuments(documents, {
       ids: expenses.map((d) => d.id),
