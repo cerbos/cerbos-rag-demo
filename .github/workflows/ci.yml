@@ -16,5 +16,12 @@ jobs:
         uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+      - name: Install dependencies
+        run: npm i
+      - name: Lint
+        run: npm run lint
       - name: Build
         uses: docker/build-push-action@v6
