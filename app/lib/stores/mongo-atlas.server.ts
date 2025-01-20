@@ -76,6 +76,7 @@ export class MongoAtlas implements VectorStore {
           ],
         },
       });
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (e) {
       console.log("Search index exists");
     }
