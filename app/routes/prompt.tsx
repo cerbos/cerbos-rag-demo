@@ -25,10 +25,6 @@ My region is {region}
 
 The current time is {time}
 
-If the user role is MANAGER and department in SALES then they can only approve an expense if it is in the same region as them.
-If the user department is IT then they can access all expenses regardless of region.
-A user can't approve their own expenses unless they have the ADMIN role
-
 Answer: `}
         </pre>
       </code>
