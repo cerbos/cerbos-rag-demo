@@ -13,7 +13,7 @@
   "dependencies": {
     "@cerbos/core": "^0.21.0",
     "@cerbos/grpc": "^0.20.0",
-    "@hookform/resolvers": "^3.9.0",
+    "@hookform/resolvers": "^4.0.0",
     "@langchain/community": "^0.3.17",
     "@langchain/core": "^0.3.27",
     "@langchain/mongodb": "^0.1.0",
