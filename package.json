@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@cerbos/core": "^0.21.0",
-    "@cerbos/grpc": "^0.20.0",
+    "@cerbos/grpc": "^0.21.0",
     "@hookform/resolvers": "^4.0.0",
     "@langchain/community": "^0.3.17",
     "@langchain/core": "^0.3.27",
@@ -38,7 +38,7 @@
     "cross-env": "^7.0.3",
     "isbot": "^5.0.0",
     "langchain": "^0.3.12",
-    "lucide-react": "^0.479.0",
+    "lucide-react": "^0.482.0",
     "mongodb": "^6.12.0",
     "react": "19.0.0",
     "react-dom": "19.0.0",
