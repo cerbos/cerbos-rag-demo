@@ -38,7 +38,7 @@
     "cross-env": "^7.0.3",
     "isbot": "^5.0.0",
     "langchain": "^0.3.12",
-    "lucide-react": "^0.482.0",
+    "lucide-react": "^0.483.0",
     "mongodb": "^6.12.0",
     "react": "19.0.0",
     "react-dom": "19.0.0",
