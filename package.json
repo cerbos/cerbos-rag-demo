@@ -38,7 +38,7 @@
     "cross-env": "^7.0.3",
     "isbot": "^5.0.0",
     "langchain": "^0.3.12",
-    "lucide-react": "^0.485.0",
+    "lucide-react": "^0.487.0",
     "mongodb": "^6.12.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
@@ -75,5 +75,5 @@
   "engines": {
     "node": ">=20.0.0"
   },
-  "packageManager": "pnpm@10.7.0+sha512.6b865ad4b62a1d9842b61d674a393903b871d9244954f652b8842c2b553c72176b278f64c463e52d40fff8aba385c235c8c9ecf5cc7de4fd78b8bb6d49633ab6"
+  "packageManager": "pnpm@10.8.0+sha512.0e82714d1b5b43c74610193cb20734897c1d00de89d0e18420aebc5977fa13d780a9cb05734624e81ebd81cc876cd464794850641c48b9544326b5622ca29971"
 }
